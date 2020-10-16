@@ -8,11 +8,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-@Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
+@Getter
 public class NovoComponente implements Serializable {
 
     private static final long serialVersionUID = 707240391209107253L;
@@ -51,17 +51,17 @@ public class NovoComponente implements Serializable {
     public Componente toEntity() {
 
         return Componente.builder()
-                .id(this.getId())
-                .codigo(this.getCodigo())
-                .descricao(this.getDescricao())
-                .codigoExterno(this.getCodigoExterno())
-                .tabela(this.getTabela())
-                .unidadeMedida(this.getUnidadeMedida())
-                .moeda(this.getMoeda())
-                .tipo(this.getTipo())
-                .aplicacao(this.getAplicacao())
-                .ativo(this.getAtivo())
-                .hedge(this.getHedge())
+                .id(this.id)
+                .codigo(this.codigo)
+                .descricao(this.descricao)
+                .codigoExterno(this.codigoExterno)
+                .tabela(this.tabela)
+                .unidadeMedida(this.unidadeMedida)
+                .moeda(this.moeda)
+                .tipo(this.tipo)
+                .aplicacao(this.aplicacao)
+                .ativo(this.ativo)
+                .hedge(this.hedge)
                 .build();
     }
 

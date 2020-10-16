@@ -1,4 +1,4 @@
-package com.totvs.componente.exception;
+package com.totvs.componente.validacao;
 
 import com.totvs.tjf.api.context.stereotype.error.ApiBadRequest;
 

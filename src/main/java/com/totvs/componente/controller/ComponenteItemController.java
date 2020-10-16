@@ -1,6 +1,5 @@
 package com.totvs.componente.controller;
 
-import com.totvs.componente.dto.ComponenteDTO;
 import com.totvs.componente.dto.ComponenteItemDTO;
 import com.totvs.componente.model.ComponenteItem;
 import com.totvs.componente.repository.ComponenteItemRepository;
