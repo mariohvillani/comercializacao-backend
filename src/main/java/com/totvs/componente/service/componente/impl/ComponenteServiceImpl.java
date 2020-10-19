@@ -32,7 +32,7 @@ public class ComponenteServiceImpl implements ComponenteService {
     private void validarCodigo(NovoComponente novoComponente) {
         Componente componente = this.repository.findByCodigo(novoComponente.getCodigo());
         if (componente != null && !componente.getId().equals(novoComponente.getId())) {
-            throw new IllegalArgumentException("O código do componente já esta cadastrado");
+            throw new IllegalArgumentException("O código do componente já está cadastrado");
         }
     }
 
