@@ -14,4 +14,6 @@ public interface ComponenteRepository extends JpaRepository<Componente, Integer>
     Page<ComponenteDTO> findComponenteByCodigoContains(String codigo, Pageable paginacao);
 
     ComponenteDTO findComponenteById(Integer id);
+
+    Componente findByCodigo(String codigo);
 }

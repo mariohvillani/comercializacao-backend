@@ -1,12 +1,10 @@
 package com.totvs.componente.controller;
 
 import com.totvs.componente.dto.ComponenteDTO;
-import com.totvs.componente.model.Componente;
 import com.totvs.componente.repository.ComponenteRepository;
 import com.totvs.componente.request.NovoComponente;
-import com.totvs.componente.validacao.RequestSubmitRequestContraintException;
+import com.totvs.componente.service.componente.ComponenteService;
 import com.totvs.tjf.api.context.stereotype.ApiGuideline;
-import com.totvs.tjf.core.validation.ValidatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
@@ -28,16 +26,11 @@ public class ComponenteController {
 
     @Lazy
     @Autowired
-    private ValidatorService validator;
+    private ComponenteService salvarComponente;
 
     @PostMapping
     ResponseEntity<ComponenteDTO> salvarComponente(@RequestBody NovoComponente novoComponente) {
-        this.validator.validate(novoComponente).ifPresent(violations -> {
-            throw new RequestSubmitRequestContraintException(violations);
-        });
-
-        Componente componente = this.repository.save(novoComponente.toEntity());
-        return ResponseEntity.ok(ComponenteDTO.from(componente));
+        return ResponseEntity.ok(salvarComponente.salvar(novoComponente));
     }
 
     @GetMapping

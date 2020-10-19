@@ -24,7 +24,7 @@ public class Componente implements Serializable {
     private Integer id;
 
     @NotBlank(message = "O código não pode estar em branco")
-    @Column(name = "codigo")
+    @Column(name = "codigo", unique = true, nullable = false)
     private String codigo;
 
     @NotBlank(message = "A descrição não pode estar em branco")
