@@ -10,7 +10,6 @@ import com.totvs.tjf.core.validation.ValidatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 @Service
 public class ComponenteServiceImpl implements ComponenteService {
@@ -26,13 +25,15 @@ public class ComponenteServiceImpl implements ComponenteService {
     @Override
     public ComponenteDTO salvar(NovoComponente novoComponente) {
         this.validarContraintException(novoComponente);
-        this.validarCodigo(novoComponente.getCodigo());
+        this.validarCodigo(novoComponente);
         return ComponenteDTO.from(this.repository.save(novoComponente.toEntity()));
     }
 
-    private void validarCodigo(String codigo) {
-        Componente componente = this.repository.findByCodigo(codigo);
-        Assert.isNull(componente, "O código do componente já esta cadastrado");
+    private void validarCodigo(NovoComponente novoComponente) {
+        Componente componente = this.repository.findByCodigo(novoComponente.getCodigo());
+        if (componente != null && !componente.getId().equals(novoComponente.getId())) {
+            throw new IllegalArgumentException("O código do componente já esta cadastrado");
+        }
     }
 
     private void validarContraintException(NovoComponente novoComponente) {
